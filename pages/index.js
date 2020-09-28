@@ -1,7 +1,40 @@
-import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import Head from "next/head";
+import styles from "../styles/Home.module.css";
+// import {entries} from '../src/utils/getAllEntries';
+
+import { frontMatter as entries } from "./entries/**/*.mdx";
+
+// import {frontmatter} from './entries/*';
 
 export default function Home() {
+  const alphabetize = () => {
+    const test = entries
+      .map((frontMatter) => frontMatter.subject.toLowerCase())
+      .sort();
+    // get the Alphabet
+    const availableLetters = test.reduce((acc, curr) => {
+      const firstLetter = curr.split("").shift();
+      if (acc && !acc.includes(firstLetter)) {
+        acc.push(firstLetter);
+      }
+      return acc;
+    }, []);
+
+    const sortedEntries = availableLetters.map((l) => {
+      return entries.reduce(
+        (acc, curr) => {
+          if (curr.subject.split("").shift().toLowerCase() === l) {
+            acc[l].push(curr.subject);
+          }
+          return acc;
+        },
+        { [l]: [] }
+      );
+    });
+
+    return { availableLetters, test, sortedEntries };
+  };
+
   return (
     <div className={styles.container}>
       <Head>
@@ -10,43 +43,23 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
+        <div>
+          {entries.map((fm) => (
+            <div key={Math.random() * 100}>{fm.title}</div>
+          ))}
 
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
-
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
+          {alphabetize().sortedEntries.map((i) => {
+            const letter = Object.keys(i);
+            const letterEntries = Object.values(i)[0];
+            return (
+              <div>
+                <h2>{letter}</h2>
+                {letterEntries.map((e) => (
+                  <h4>{e}</h4>
+                ))}
+              </div>
+            );
+          })}
         </div>
       </main>
 
@@ -56,10 +69,10 @@ export default function Home() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Powered by{' '}
+          Powered by{" "}
           <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
         </a>
       </footer>
     </div>
-  )
+  );
 }
