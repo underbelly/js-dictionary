@@ -13,7 +13,6 @@
     "babel-plugin-import-glob-array": "^0.2.0",
     "next": "9.5.3",
     "next-mdx-enhanced": "^4.0.0",
-    "prettier": "^2.1.2",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "styled-components": "^5.2.0"
@@ -27,6 +26,7 @@
     "eslint-plugin-import": "^2.22.0",
     "eslint-plugin-jsx-a11y": "^6.3.1",
     "eslint-plugin-prettier": "^3.1.4",
-    "eslint-plugin-react": "^7.21.2"
+    "eslint-plugin-react": "^7.21.2",
+    "prettier": "^2.1.2"
   }
 }
