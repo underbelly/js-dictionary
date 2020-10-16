@@ -4,6 +4,8 @@ The intention of this project is to make a fun heavily contributed OSS project.
 
 HacktoberFest Friendly!!
 
+How to add a definition: add an .mdx file to the entries folder named after the term you wish to define. (Hint: look at the other examples in the folder)
+
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
@@ -20,6 +22,12 @@ yarn dev
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+
+
+## Contributing
+If you've ever wanted to contribute to open source, and a great cause, now is your chance!
+
+See these [contributing how to docs](http://opensource.guide/how-to-contribute/) for more information
 
 ## Learn More
 
