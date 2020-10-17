@@ -1,9 +1,12 @@
 import React from "react";
 import Link from "next/link";
 
+import { StyledContainer, StyledContent } from './styles';
+
 import { frontMatter as entries } from "../../../pages/entries/**/*.mdx";
 
 const EntriesList = () => {
+
   const alphabetize = () => {
     const alphabetizedEntries = entries
       .map((frontMatter) => frontMatter.subject.toLowerCase())
@@ -32,25 +35,29 @@ const EntriesList = () => {
     return { availableLetters, alphabetizedEntries, sortedEntries };
   };
   return (
-    <div>
+    <ul>
       {alphabetize().sortedEntries.map((i) => {
         const letter = Object.keys(i);
         const letterEntries = Object.values(i)[0];
         return (
+          <StyledContainer>
           <details>
             <summary>{letter}</summary>
             {letterEntries.map((e) => {
               const slug = e.path.replace(".mdx", "");
               return (
-                <Link href={slug}>
-                  <a>{e.subject}</a>
-                </Link>
+                <StyledContent data-icon="😎">
+                  <Link href={slug}>
+                    <a>{e.subject}</a>
+                  </Link>
+                </StyledContent>
               );
             })}
           </details>
+          </StyledContainer>
         );
       })}
-    </div>
+    </ul>
   );
 };
 
