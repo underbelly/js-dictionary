@@ -1,6 +1,8 @@
 export const colors = {
   yellow: "#f7df1e",
   black: "#000000",
+  grey1: '#8d8d8d',
+  grey2: '#cdcdcd'
 };
 
 const typography = {
